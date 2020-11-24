@@ -1,0 +1,3 @@
+## Important notes
+
+### Color scheme
