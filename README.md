@@ -12,7 +12,5 @@ A simple app to track my dreams and my mood. Can't figure out a name yet.
 ## Some (rough) mockups
 Some rough mockups done with simple HTML and CSS. Not the final style but very close
 <p align="center">
-<img src="https://i.imgur.com/N8CkbtB.png" alt="Home">
-<img src="https://i.imgur.com/ZpqU09A.png" alt="New">
-<img src="https://i.imgur.com/U4yqjBC.png" alt="Settings">
+<img src="https://i.imgur.com/9G7s4iF.png">
 </p>
