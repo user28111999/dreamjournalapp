@@ -116,7 +116,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// TODOS: Improve it (case sensitive etc)
+// TODOS: Improve it (case sensitive, regex, etc)
 exports.searchByTitle = (req, res) => {
     Dream.find({ title: { $regex: req.body.title } })
     .then(dream => {
