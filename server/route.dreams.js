@@ -6,4 +6,5 @@ module.exports = (app) => {
     app.get("/dreams/:id", dreams.findOne);
     app.put("/dreams/:id", dreams.update);
     app.delete("/dreams/:id", dreams.delete);
+    app.post("/dreams/search", dreams.searchByTitle);
 }

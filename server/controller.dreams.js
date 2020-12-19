@@ -8,10 +8,10 @@ exports.create = (req, res) => {
     }
 
     const dream = new Dream({
-        title: req.body.title || null,
+        title: req.body.title ? req.body.title : null,
         content: req.body.content,
-        color: null,
-        mood: null
+        color: req.body.color ? req.body.color : null,
+        mood: req.body.mood ? req.body.mood : null
     });
 
     dream.save()
@@ -58,7 +58,8 @@ exports.findOne = (req, res) => {
     })
 }
 
-// TODOS: Make it so if no content is specified, do nothing
+// TODOS: Make it so if no content is specified, 
+// do nothing instead of sending all the data (? Maybe ?)
 // e.g. req.body.content ? req.body.content : doNothing
 exports.update = (req, res) => {
     if (!req.body.content) {
@@ -114,3 +115,26 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+// TODOS: Improve it (case sensitive etc)
+exports.searchByTitle = (req, res) => {
+    Dream.find({ title: { $regex: req.body.title } })
+    .then(dream => {
+        if (!dream) {
+            return res.status(404).send({
+                message: `DREAM NOT FOUND WITH TITLE [${req.params.title}]`
+            });
+        }
+
+        res.send(dream);
+    }).catch(err => {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: `DREAM NOT FOUND WITH TITLE [${req.body.title}]`
+            });                
+        }
+        return res.status(500).send({
+            message: `something stupid happened: ${err}`
+        });
+    });
+}
