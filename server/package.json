@@ -1,0 +1,27 @@
+{
+  "name": "cyberdreams-server",
+  "version": "1.0.0",
+  "description": "Server for CyberDreams",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yunseok/cyberdreams.git"
+  },
+  "author": "Alan",
+  "bugs": {
+    "url": "https://github.com/yunseok/cyberdreams/issues"
+  },
+  "homepage": "https://github.com/yunseok/cyberdreams#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
