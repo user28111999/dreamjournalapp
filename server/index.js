@@ -27,7 +27,7 @@ require("./route.dreams")(app);
 // Routes
 app.get('/', (req, res) => {
     res.json({
-        "message": "YUH!"
+        "message": `yuh! ${req, res}`
     });
 });
 
