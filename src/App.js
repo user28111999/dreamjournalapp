@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faSearch, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import './App.css';
 
 // function App() {
@@ -50,7 +50,7 @@ const Header = styled.div`
   }
 `
 
-const Title = styled.h2`
+const TitleApp = styled.h2`
   margin: 0;
 `
 
@@ -60,8 +60,10 @@ const ContainerSearch = styled.div`
 
   svg {
     position: absolute;
+    right: 48px;
+    top: 52px;
+    font-size: 18px;
     color: #c8c9de;
-    font-size: 24px;
   }
 `
 
@@ -79,11 +81,41 @@ const InputSearch = styled.input`
   }
 `
 
+const ContainerItem = styled.div`
+  background: white;
+    border-radius: 12px;
+    padding: 18px 12px;
+    border-left: 12px solid #4278df;
+    margin: 16px 0px;
+    display: flex;
+    justify-content: space-between;
+
+    svg {
+      margin-top: auto;
+      margin-bottom: auto;
+      font-size: 24px;
+      margin-right: 12px;
+      color: #c8c9de;
+    }
+`
+
+const TitleDream = styled.h2`
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+`
+
+const Date = styled.span`
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  opacity: .25;
+`
+
 function App() {
   return (
     <Container>
       <Header>
-        <Title>DreamJournal</Title>
+        <TitleApp>DreamJournal</TitleApp>
         <FontAwesomeIcon icon={faCog} />
       </Header>
       <ContainerSearch>
@@ -93,6 +125,13 @@ function App() {
         />
         <FontAwesomeIcon icon={faSearch} />
       </ContainerSearch>
+        <ContainerItem>
+          <div>
+            <TitleDream>Un rêve</TitleDream>
+            <Date>Lundi 21 Décembre - 04:20</Date>
+          </div>
+          <FontAwesomeIcon icon={faAngleRight} /> 
+        </ContainerItem>
     </Container>
   )
 }
