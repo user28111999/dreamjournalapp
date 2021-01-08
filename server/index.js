@@ -33,7 +33,7 @@ require("./route.notes")(app);
 // Routes
 app.get('/', (req, res) => {
     res.json({
-        "message": `CYBERDREAMS: ${req, res}`
+        "message": `CYBERDREAMS REST API: ${req, res}`
     });
 });
 

@@ -1,17 +1,13 @@
 const Note = require("./model.notes");
 
-exports.create = (req, res) => {
-    if (!req.body.content) {
-        return res.status(400).send({
-            message: "Content cannot be empty"
-        });
-    }
+const randomColor = require("./utils/randomColor");
 
+exports.create = (req, res) => {
     const notes = new Note({
         type: "note",
         title: req.body.title,
-        content: req.body.content,
-        color: req.body.color ? req.body.color : null,
+        content: req.body.content ? req.body.content : null,
+        color: req.body.color ? req.body.color : randomColor(),
         tasks: req.body.tasks ? req.body.tasks : null
     });
 
