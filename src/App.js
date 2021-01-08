@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faSearch, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faSearch, faAngleRight, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import './App.css';
 
 // function App() {
@@ -43,15 +43,18 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
+  color: #c8c9de;
+  margin: 16px 12px 8px 12px;
 
   svg {
-    font-size: 24px;
+    font-size: 22px;
+    margin-top: -2px;
   }
 `
 
 const TitleApp = styled.h2`
   margin: 0;
+  font-size: 18px;
 `
 
 const ContainerSearch = styled.div`
@@ -60,8 +63,8 @@ const ContainerSearch = styled.div`
 
   svg {
     position: absolute;
-    right: 48px;
-    top: 52px;
+    right: 44px;
+    top: 58px;
     font-size: 18px;
     color: #c8c9de;
   }
@@ -72,7 +75,6 @@ const InputSearch = styled.input`
   padding: 16px;
   border-radius: 12px;
   width: 100%;
-  font-family: 'Nunito', sans-serif;
   outline: none;
 
   &::placeholder {
@@ -83,20 +85,20 @@ const InputSearch = styled.input`
 
 const ContainerItem = styled.div`
   background: white;
-    border-radius: 12px;
-    padding: 18px 12px;
-    border-left: 12px solid #4278df;
-    margin: 16px 0px;
-    display: flex;
-    justify-content: space-between;
+  border-radius: 12px;
+  padding: 18px 12px;
+  border-left: 12px solid #4278df;
+  margin: 16px 0px;
+  display: flex;
+  justify-content: space-between;
 
-    svg {
-      margin-top: auto;
-      margin-bottom: auto;
-      font-size: 24px;
-      margin-right: 12px;
-      color: #c8c9de;
-    }
+  svg {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 24px;
+    margin-right: 12px;
+    color: #c8c9de;
+  }
 `
 
 const TitleDream = styled.h2`
@@ -111,9 +113,28 @@ const Date = styled.span`
   opacity: .25;
 `
 
+const ButtonNewDream = styled.button`
+  position: absolute;
+  bottom: 12px;
+  border-radius: 50%;
+  /* border-top-left-radius: 12px;
+  border-top-right-radius: 12px; */
+  font-size: 24px;
+  outline: none;
+
+  background: blue;
+  color: white;
+
+  border: 0;
+  padding: 24px 32px;
+`
+
 function App() {
   return (
     <Container>
+      <ButtonNewDream>
+        <FontAwesomeIcon icon={faPencilAlt} />
+      </ButtonNewDream>
       <Header>
         <TitleApp>DreamJournal</TitleApp>
         <FontAwesomeIcon icon={faCog} />

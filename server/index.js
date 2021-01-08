@@ -28,11 +28,12 @@ mongoose.connect(dbConfig.url, {
 });
 
 require("./route.dreams")(app);
+require("./route.notes")(app);
 
 // Routes
 app.get('/', (req, res) => {
     res.json({
-        "message": `yuh! ${req, res}`
+        "message": `CYBERDREAMS: ${req, res}`
     });
 });
 

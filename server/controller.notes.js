@@ -1,6 +1,4 @@
-const Dream = require("./model.dream");
-
-const randomColor = require("./utils/randomColor");
+const Note = require("./model.notes");
 
 exports.create = (req, res) => {
     if (!req.body.content) {
@@ -9,15 +7,15 @@ exports.create = (req, res) => {
         });
     }
 
-    const dream = new Dream({
-        type: "dream",
+    const notes = new Note({
+        type: "note",
         title: req.body.title,
         content: req.body.content,
-        color: req.body.color ? req.body.color : randomColor(),
-        mood: req.body.mood ? req.body.mood : null
+        color: req.body.color ? req.body.color : null,
+        tasks: req.body.tasks ? req.body.tasks : null
     });
 
-    dream.save()
+    notes.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
@@ -28,42 +26,39 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-    Dream.find()
-    .then(dreams => {
-        res.send(dreams);
+    Note.find()
+    .then(notes => {
+        res.send(notes);
     }).catch(err => {
         res.status(500).send({
-            message: err.message
+            message: `${err.message} + ${req}`
         });
     });
 };
 
 exports.findOne = (req, res) => {
-    Dream.findById(req.params.id)
-    .then(dream => {
-        if (!dream) {
+    Note.findById(req.params.id)
+    .then(note => {
+        if (!note) {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH ID [${req.params.id}]`
+                message: `NOTE NOT FOUND WITH ID [${req.params.id}]`
             });
         }
 
-        res.send(dream);
+        res.send(note);
     }).catch(err => {
         if (err.kind === "ObjectId") {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH ID [${req.params.id}]`
+                message: `NOTE NOT FOUND WITH ID [${req.params.id}]`
             });
         }
 
         return res.status(500).send({
-            message: `ERROR RETRIEVING DREAM WITH ID [${req.params.id}]`
+            message: `ERROR RETRIEVING NOTE WITH ID [${req.params.id}]`
         });
     })
 }
 
-// TODOS: Make it so if no content is specified, 
-// do nothing instead of sending all the data (? Maybe ?)
-// e.g. req.body.content ? req.body.content : doNothing
 exports.update = (req, res) => {
     if (!req.body.content) {
         return res.status(400).send({
@@ -71,70 +66,70 @@ exports.update = (req, res) => {
         });
     }
 
-    Dream.findByIdAndUpdate(req.params.id, {
-        type: "dream",
+    Note.findByIdAndUpdate(req.params.id, {
+        type: req.body.type,
         title: req.body.title,
         content: req.body.content,
         color: req.body.color,
-        mood: req.body.mood
+        tasks: req.body.tasks
     }, { new: true })
-    .then(dream => {
-        if (!dream) {
+    .then(note => {
+        if (!note) {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH ID [${req.params.id}]`
+                message: `NOTE NOT FOUND WITH ID [${req.params.id}]`
             });
         }
 
-        res.send(dream);
+        res.send(note);
     }).catch(err => {
         if (err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH ID [${req.params.id}]`
+                message: `NOTE NOT FOUND WITH ID [${req.params.id}]`
             });                
         }
 
         return res.status(500).send({
-            message: `ERROR UPDATING DREAM WITH ID [${req.params.id}]`
+            message: `ERROR UPDATING NOTE WITH ID [${req.params.id}]`
         });
     });
 };
 
 exports.delete = (req, res) => {
-    Dream.findByIdAndRemove(req.params.id)
-    .then(dream => {
-        if (!dream) {
+    Note.findByIdAndRemove(req.params.id)
+    .then(note => {
+        if (!note) {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH ID [${req.params.id}]`
+                message: `NOTE NOT FOUND WITH ID [${req.params.id}]`
             });
         }
-        res.send({ message: "SUCCESSFULLY DELETED DREAM" });
+        res.send({ message: "SUCCESSFULLY DELETED NOTE" });
     }).catch(err => {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH ID [${req.params.id}]`
+                message: `NOTE NOT FOUND WITH ID [${req.params.id}]`
             });                
         }
         return res.status(500).send({
-            message: `ERROR DELETING DREAM WITH ID [${req.params.id}]`
+            message: `ERROR DELETING NOTE WITH ID [${req.params.id}]`
         });
     });
 };
 
 // TODOS: Improve it (case sensitive, regex, etc)
 exports.searchByTitle = (req, res) => {
-    Dream.find({ title: { $regex: req.body.title } })
-    .then(dream => {
-        if (!dream) {
+    Note.find({ title: { $regex: req.body.title } })
+    .then(note => {
+        if (!note) {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH TITLE [${req.params.title}]`
+                message: `NOTE NOT FOUND WITH TITLE [${req.params.title}]`
             });
         }
 
-        res.send(dream);
+        res.send(note);
     }).catch(err => {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: `DREAM NOT FOUND WITH TITLE [${req.body.title}]`
+                message: `NOTE NOT FOUND WITH TITLE [${req.body.title}]`
             });                
         }
         return res.status(500).send({
