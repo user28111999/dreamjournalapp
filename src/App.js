@@ -45,10 +45,23 @@ const Header = styled.div`
 	margin-bottom: 12px;
 `
 
+const Title = styled.h2`
+	display: block;
+`
+
+const SortSelect = styled.select``
+
+// const SearchContainer = styled.div``
+
 const App = () => {
 	return (
 		<Container>
-			<Header></Header>
+			<Header>
+				<div>
+					<Title>Notes</Title>
+					<SortSelect></SortSelect>
+				</div>
+			</Header>
 		</Container>
 	)
 }
