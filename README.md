@@ -1,5 +1,8 @@
 # ???
 A simple app for myself to track my dreams, my mood and remind me to take my pills. Can't figure out a name yet.
+
+<i>Archive reason: I now use Nextcloud and it is now useless to me</i>
+
 ## To-dos
  - [x] Mockups
  - [x] Being able to add/edit/remove dreams
